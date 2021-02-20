@@ -19,7 +19,7 @@ function get_get($name){
 
 function get_post($name){
   if(isset($_POST[$name]) === true){
-    return $_POST[$name];
+    return escape_html($_POST[$name]);
   };
   return '';
 }
@@ -135,6 +135,6 @@ function is_valid_upload_image($image){
   return true;
 }
 
-function h($str){
+function escape_html($str){
   return htmlspecialchars($str,ENT_QUOTES,'UTF-8');
 }
