@@ -7,7 +7,7 @@ require_once MODEL_PATH . 'cart.php';
 
 session_start();
 
-if(is_logined() === false){
+if (is_logined() === false) {
   redirect_to(LOGIN_URL);
 }
 
@@ -15,9 +15,12 @@ $db = get_db_connect();
 $user = get_login_user($db);
 
 $cart_id = get_post('cart_id');
-
-if(delete_cart($db, $cart_id)){
-  set_message('カートを削除しました。');
+if ($_POST['csrf'] === $_SESSION['token']) {
+  if (delete_cart($db, $cart_id)) {
+    set_message('カートを削除しました。');
+  } else {
+    set_error('カートの削除に失敗しました。');
+  }
 } else {
   set_error('カートの削除に失敗しました。');
 }

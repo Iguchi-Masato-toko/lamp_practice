@@ -8,6 +8,9 @@ if(is_logined() === true){
   redirect_to(HOME_URL);
 }
 
+$token = createToken();
+$_SESSION['token'] = $token;
+
 include_once VIEW_PATH . 'signup_view.php';
 
 

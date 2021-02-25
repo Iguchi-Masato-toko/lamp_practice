@@ -138,3 +138,10 @@ function is_valid_upload_image($image){
 function escape_html($str){
   return htmlspecialchars($str,ENT_QUOTES,'UTF-8');
 }
+
+function createToken(){
+  $tokenbyte = openssl_random_pseudo_bytes(20);
+  $csrftoken = bin2hex($tokenbyte);
+
+  return $csrftoken;
+}
