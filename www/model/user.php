@@ -110,3 +110,12 @@ function insert_user($db, $name, $password){
   return execute_query($db, $sql,[$name,$password]);
 }
 
+
+ function judge_user_type($db,$user){
+   $sql = "
+   SELECT type
+   FROM users
+   WHERE user_id = ?
+   ";
+   return fetch_query($db, $sql,[$user]);
+ }
