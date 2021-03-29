@@ -122,3 +122,19 @@ function get_all_history($db){
     return fetch_all_query($db, $sql,[$history_id,$user_id]);
   }
  }
+
+ function get_ranking_item($db){
+   $sql = "
+   SELECT
+   SUM(history_item.amount) as sum,
+   items.name,
+   items.image
+   FROM history_item
+   LEFT JOIN items
+   ON history_item.item_id = items.item_id
+   GROUP BY history_item.item_id
+   ORDER BY sum DESC
+   LIMIT 3
+   ";
+   return fetch_all_query($db, $sql);
+ }
