@@ -15,6 +15,8 @@ $user = get_login_user($db);
 
 $items = get_open_items($db);
 
+$ranking_data = get_ranking_item($db);
+
 $token = createToken();
 $_SESSION['token'] = $token;
 
